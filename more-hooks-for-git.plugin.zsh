@@ -7,7 +7,9 @@
 
 function git() {
     local project_path="$(pwd)"
+    project_path="${project_path// /\\ }"
     local hooks_path="$project_path/.git/hooks"
+    hooks_path="${hooks_path// /\\ }"
 
     if [[ $# -ge 1 && "$1" == "status" ]]
     then
