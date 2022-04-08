@@ -82,6 +82,22 @@ function git() {
         else
             echo "post-add does not exist"
         fi
+    elif [[ $# -ge 1 && "$1" == "pull" ]]
+    then
+        if [ ! -d "$hooks_path" ]; then
+            echo "Git is not initialized in this directory. run git init first"
+            return 1
+        fi
+        local pre_pull_path="$hooks_path/pre-pull"
+
+        if [ -f "$pre_add_path" ]; then
+            echo "pre-add exists"
+            . "$pre_add_path"
+        else
+            echo "pre-add does not exist"
+        fi
+
+        command git "$@"
     else
         command git "$@"
     fi
