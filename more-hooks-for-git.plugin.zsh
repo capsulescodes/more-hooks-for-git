@@ -90,11 +90,11 @@ function git() {
         fi
         local pre_pull_path="$hooks_path/pre-pull"
 
-        if [ -f "$pre_add_path" ]; then
-            echo "pre-add exists"
-            . "$pre_add_path"
+        if [ -f "$pre_pull_path" ]; then
+            echo "pre-pull exists"
+            . "$pre_pull_path"
         else
-            echo "pre-add does not exist"
+            echo "pre-pull does not exist"
         fi
 
         command git "$@"
