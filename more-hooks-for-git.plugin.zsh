@@ -1,5 +1,5 @@
 #!/bin/bash
-# This plugin overload the git command to expose more hooks.
+# This zsh plugin overload the git command to expose more hooks.
 # the main git binary doesn't expose hooks for the commands that don't modify anything.
 # This plugin give you that ability for the following commands : `add`, `status`, `diff`.
 # Feel free to add more commands to the list.
