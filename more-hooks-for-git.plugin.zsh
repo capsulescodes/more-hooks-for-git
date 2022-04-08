@@ -9,20 +9,12 @@ function git() {
     local project_path="$(pwd)"
     local hooks_path="$project_path/.git/hooks"
 
-    if [[ $# -ge 1 && "$1" == "init" ]]
-    then
-        command git "$@"
-
-        return 0
-    fi
-
-    if [ ! -d "$hooks_path" ]; then
-        echo "Git is not initialized in this directory. run git init first"
-        return 1
-    fi
-
     if [[ $# -ge 1 && "$1" == "status" ]]
     then
+        if [ ! -d "$hooks_path" ]; then
+            echo "Git is not initialized in this directory. run git init first"
+            return 1
+        fi
         local pre_status_path="$hooks_path/pre-status"
         local post_status_path="$hooks_path/post-status"
 
@@ -43,6 +35,10 @@ function git() {
         fi
     elif [[ $# -ge 1 && "$1" == "diff" ]]
     then
+        if [ ! -d "$hooks_path" ]; then
+            echo "Git is not initialized in this directory. run git init first"
+            return 1
+        fi
         local pre_diff_path="$hooks_path/pre-diff"
         local post_diff_path="$hooks_path/post-diff"
 
@@ -64,7 +60,10 @@ function git() {
 
     elif [[ $# -ge 1 && "$1" == "add" ]]
     then
-        echo "git add with sprinkles of flint"
+        if [ ! -d "$hooks_path" ]; then
+            echo "Git is not initialized in this directory. run git init first"
+            return 1
+        fi
         local pre_add_path="$hooks_path/pre-add"
         local post_add_path="$hooks_path/post-add"
 
