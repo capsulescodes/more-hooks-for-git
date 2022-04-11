@@ -20,7 +20,10 @@ function git() {
 
         if [ -f "$pre_status_path" ]; then
             echo "pre-status exists"
+            
             . "$pre_status_path"
+        
+            return $?
         else
             echo "pre-status does not exist"
         fi
@@ -29,8 +32,11 @@ function git() {
 
         if [ -f "$post_status_path" ]; then
             echo "post-status exists"
+
             . "$post_status_path"
-        else
+ 
+            return $?
+       else
             echo "post-status does not exist"
         fi
     elif [[ $# -ge 1 && "$1" == "diff" ]]
@@ -44,7 +50,10 @@ function git() {
 
         if [ -f "$pre_diff_path" ]; then
             echo "pre-diff exists"
+
             . "$pre_diff_path"
+
+            return $?
         else
             echo "pre-diff does not exist"
         fi
@@ -53,7 +62,10 @@ function git() {
 
         if [ -f "$post_diff_path" ]; then
             echo "post-diff exists"
+
             . "$post_diff_path"
+
+            return $?
         else
             echo "post-diff does not exist"
         fi
@@ -69,7 +81,10 @@ function git() {
 
         if [ -f "$pre_add_path" ]; then
             echo "pre-add exists"
+
             . "$pre_add_path"
+
+            return $?
         else
             echo "pre-add does not exist"
         fi
@@ -78,7 +93,10 @@ function git() {
 
         if [ -f "$post_add_path" ]; then
             echo "post-add exists"
+
             . "$post_add_path"
+
+            rerturn $?
         else
             echo "post-add does not exist"
         fi
@@ -92,7 +110,10 @@ function git() {
 
         if [ -f "$pre_pull_path" ]; then
             echo "pre-pull exists"
+           
             . "$pre_pull_path"
+ 
+            return $?
         else
             echo "pre-pull does not exist"
         fi
