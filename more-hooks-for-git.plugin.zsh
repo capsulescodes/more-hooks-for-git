@@ -20,10 +20,11 @@ function git() {
 
         if [ -f "$pre_status_path" ]; then
             echo "pre-status exists"
-            
+
             . "$pre_status_path"
-        
-            return $?
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "pre-status does not exist"
         fi
@@ -34,8 +35,9 @@ function git() {
             echo "post-status exists"
 
             . "$post_status_path"
- 
-            return $?
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
        else
             echo "post-status does not exist"
         fi
@@ -53,7 +55,10 @@ function git() {
 
             . "$pre_diff_path"
 
-            return $?
+            local is_finished_correctly= $?;
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "pre-diff does not exist"
         fi
@@ -65,7 +70,9 @@ function git() {
 
             . "$post_diff_path"
 
-            return $?
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "post-diff does not exist"
         fi
@@ -84,7 +91,10 @@ function git() {
 
             . "$pre_add_path"
 
-            return $?
+            local is_finished_correctly= $?;
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "pre-add does not exist"
         fi
@@ -96,7 +106,9 @@ function git() {
 
             . "$post_add_path"
 
-            rerturn $?
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "post-add does not exist"
         fi
@@ -110,10 +122,13 @@ function git() {
 
         if [ -f "$pre_pull_path" ]; then
             echo "pre-pull exists"
-           
+
             . "$pre_pull_path"
- 
-            return $?
+
+            local is_finished_correctly= $?;
+            if [ $? -gt 0 ]; then
+                return 1;
+            fi
         else
             echo "pre-pull does not exist"
         fi
